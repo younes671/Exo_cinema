@@ -49,6 +49,9 @@
                 </div>
             </div>
 
+    <main>
+    <?= $content ?>
+    </main>
 
 
 

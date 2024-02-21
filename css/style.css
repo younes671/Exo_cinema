@@ -220,8 +220,10 @@ p{
   border-radius: 7px;
 }
 
-.listeFilmTitre p{
+.listeFilmTitre{
   padding-left: 10px;
+  display: flex;
+  align-items: center;
 }
 
 
@@ -235,7 +237,7 @@ p{
     color: #FF0202;
     font-size: 15px;
     font-family: 'poppins';
-    text-shadow: 1px 5px 5px black;
+    text-shadow: 1px 1px 1px black;
     font-weight: bolder;
 }
 
