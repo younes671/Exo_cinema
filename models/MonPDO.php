@@ -1,5 +1,5 @@
 <?php
-    const HOST_NAME = 'loclahost';
+    const HOST_NAME = 'localhost';
     const DB_NAME = 'cinema';
     const USER_NAME = 'root';
     const PWD = '';
@@ -12,5 +12,5 @@
     catch(PDOException $e)
     {
         $msg = 'Erreur de connexion à la DB' . $e->getMessage();
-        die($message);
+        die($msg);
     }
