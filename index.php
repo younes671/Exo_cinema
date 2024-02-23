@@ -12,7 +12,10 @@
         switch($_GET["action"])
         {
             case "listFilms" : $ctrlCinema->listFilms(); break;
-            case "listFilms" : $ctrlCinema->listActeurs(); break;
+            case "listActeurs" : $ctrlCinema->listActeurs(); break;
+            case "listRealisateur" : $ctrlCinema->listRealisateur(); break;
+            case "listGenreFilm" : $ctrlCinema->listGenreFilm(); break;
+            case "listRole" : $ctrlCinema->listRole(); break;
         }
     }
 ?>
@@ -24,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
     <title>Cinéma</title>
 </head>
 <body>
@@ -49,16 +52,19 @@
                     <nav class="collapse navbar-collapse color-style" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link">Film</a>
+                                <a href="index.php?action=listFilms" class="nav-link">Films</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link">Meilleurs Films</a>
+                                <a href="index.php?action=listActeurs" class="nav-link">Liste Acteurs</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link">Acteurs/Stars</a>
+                                <a href="index.php?action=listRealisateur" class="nav-link">Liste realisateur</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link">Réalisateurs</a>
+                                <a href="index.php?action=listGenreFilm" class="nav-link">Genre film</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.php?action=listRole" class="nav-link">Role acteurs</a>
                             </li>
                         </ul>
                     </nav>
