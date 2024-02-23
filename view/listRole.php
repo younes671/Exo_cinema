@@ -6,7 +6,6 @@
 <table class="uk-table uk-table-striped">
     <thead>
         <tr>
-            <th>ACTEURS</th>
             <th>ROLE</th>
         </tr>
     </thead>
@@ -14,7 +13,6 @@
         <?php
         foreach($requete->fetchAll() as $role){ ?>
         <tr>
-            <td><?= $role['nomPrenom'] ?></td>
             <td><?= $role['nom_role'] ?></td>
         </tr>
     <?php } ?>

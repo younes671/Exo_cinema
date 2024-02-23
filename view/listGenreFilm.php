@@ -2,12 +2,11 @@
 
 
 
-<p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?>films</p>
+<p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> genres</p>
 <table class="uk-table uk-table-striped">
     <thead>
         <tr>
-            <th>TITRE</th>
-            <th>ANNEE SORTIE</th>
+            <th>LIBELLE</th>
         </tr>
     </thead>
     <tbody>

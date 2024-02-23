@@ -2,7 +2,7 @@
 
 
 
-<p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?>films</p>
+<p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> films</p>
 <table class="uk-table uk-table-striped">
     <thead>
         <tr>
@@ -14,7 +14,7 @@
         <?php
         foreach($requete->fetchAll() as $film){ ?>
         <tr>
-            <td><?= $film['titre'] ?></td>
+            <td><a href="index.php?action=detailFilm&id=<?= $film["id_film"] ?>"><?= $film['titre'] ?></a></td>
             <td><?= $film['annee_sortie'] ?></td>
         </tr>
     <?php } ?>
