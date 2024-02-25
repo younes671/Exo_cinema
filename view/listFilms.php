@@ -16,8 +16,11 @@
         <tr>
             <td><a href="index.php?action=detailFilm&id=<?= $film["id_film"] ?>"><?= $film['titre'] ?></a></td>
             <td><?= $film['annee_sortie'] ?></td>
+            <td><a style='text-decoration:none'class='link-light' href='index.php?action=formAddFilm&id=<?= $film['id_film'] ?>'><button class='btn btn-success btn-sm' type='button'>Ajouter film</button></a></td>
+            <td><a style='text-decoration:none'class='link-light' href='index.php?action=deleteFilm&id=<?= $film['id_film'] ?>'><button class='btn btn-danger btn-sm' type='button'>Supprimer film</button></a></td>
+            <td><a style='text-decoration:none'class='link-light' href='index.php?action=modifyFilm&id=<?= $film['id_film'] ?>'><button class='btn btn-primary btn-sm' type='button'>Modifier film</button></a></td>
         </tr>
-    <?php } ?>
+        <?php } ?>
     </tbody>
 </table>
 

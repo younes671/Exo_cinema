@@ -8,7 +8,7 @@
 <h2>Casting : </h2>
 <?php foreach($casting as $cast) 
 {
-    echo $cast["prenom"] . " " . $cast["nom"] . " dans le role de " . $cast["nom_role"] . "<br>";
+    echo "<h3>" . $cast["prenom"] . " " . $cast["nom"] . " dans le role de " . $cast["nom_role"] . "</h3><br>";
 }
 
 

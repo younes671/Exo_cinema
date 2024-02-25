@@ -1,11 +1,15 @@
 <?php  ob_start(); 
-
-$acteur = $requete->fetchAll();
-
-foreach($acteur as $act) 
+$acteur = $requete->fetch();
+$playActeurs = $reqPlay->fetchAll();
+?>
+<h1><?= $acteur["prenom"] . " " . $acteur["nom"] . "<br>Sexe : "
+    . $acteur["sexe"] . "<br>Né le : " . date("d-m-Y", strtotime($acteur['date_naissance']));?></h1>
+<?php
+foreach($playActeurs as $playActeur) 
 {
-    echo $act["prenom"] . " " . $act["nom"] . " dans le role de " . $act["nom_role"] . "<br>";
+    echo "<h2>Film : " . $playActeur["titre"] . "<br>" . $playActeur["nom_role"] . "</h2>";
 }
+?>
 
 
 
@@ -23,8 +27,7 @@ foreach($acteur as $act)
 
 
 
-
-
+<?php
 
 
 $titre = "Détails Acteurs";
