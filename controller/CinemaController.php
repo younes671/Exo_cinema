@@ -322,10 +322,10 @@
                 $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);;
-                
                 try {
-
+                    
                     $id_acteur = filter_input(INPUT_POST, "id_acteur", FILTER_VALIDATE_INT);
+                  
                     
                     $requete_personne = $pdo->prepare("UPDATE personne SET nom = :nom, prenom = :prenom, sexe = :sexe, date_naissance = :date_naissance 
                                                             WHERE id_personne = :id_personne");
@@ -335,6 +335,7 @@
                     $requete_personne->bindParam(':date_naissance', $date_naissance);
                     $requete_personne->bindParam(':id_personne', $id_acteur);
                     $requete_personne->execute();
+                    
                     
                     
                     echo "Les informations ont été mis à jour avec succès.";

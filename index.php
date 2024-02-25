@@ -33,7 +33,7 @@
             case "formAddActeur" : $ctrlCinema->formAddActeur($id); break;
             case "addActeur" : $ctrlCinema->addActeur(); break;
             case "deleteActeur" : $ctrlCinema->deleteActeur($id); break;
-            case "modifyActeur" : $ctrlCinema->modifyActeur($id); break;
+            case "modifyActeur" : $ctrlCinema->modifyActeur(); break;
         }
     } else {
         $ctrlHome->home();
