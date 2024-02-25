@@ -248,14 +248,14 @@
         
         }
             
-              
-            
-            
-
         public function formAddFilm()
         {
             require 'view/ajouterFilm.php';
         }
+              
+            
+            
+
 
         public function formAddActeur()
         {
@@ -267,10 +267,10 @@
             $pdo = Connect::seConnecter();
             if(isset($_POST['submit']))
             {
-                $nom = "Doe";
-                $prenom = "John";
-                $sexe = "M";
-                $date_naissance = "1990-01-01";
+                $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);;
                 
                 try {
                     // 1. Insérer les données dans la table `personne`
@@ -294,9 +294,96 @@
                     echo "Erreur : " . $e->getMessage();
                 }
             }
-       
-        
-            require 'view/ajouterFilm.php';
+            require 'view/ajouterActeur.php';
         }
+
+        public function deleteActeur($id)
+        {
+            $pdo = Connect::seConnecter();
+                
+            $id_acteur = filter_input(INPUT_GET, "id_acteur", FILTER_VALIDATE_INT);
+                
+            $requete = $pdo->prepare("DELETE FROM acteur 
+                                        WHERE id_acteur = :id_acteur");
+            $requete->bindParam(':id_acteur', $id_acteur);
+            $requete->execute(['id_acteur' => $id]);
+            
+            echo "L'acteur a été supprimé avec succès";
+            $this->listActeurs();
+        }
+
+       
+        // public function modifyActeur()
+        // {
+        //     $pdo = Connect::seConnecter();
+        //     if(isset($_POST['submit']))
+        //     {
+        //         $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //         $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //         $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //         $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);;
+                
+        //         try {
+
+        //             $id_acteur = filter_input(INPUT_POST, "id_acteur", FILTER_VALIDATE_INT);
+                    
+        //             $requete_personne = $pdo->prepare("UPDATE personne SET nom = :nom, prenom = :prenom, sexe = :sexe, date_naissance = :date_naissance 
+        //                                                     WHERE id_personne = :id_personne");
+        //             $requete_personne->bindParam(':nom', $nom);
+        //             $requete_personne->bindParam(':prenom', $prenom);
+        //             $requete_personne->bindParam(':sexe', $sexe);
+        //             $requete_personne->bindParam(':date_naissance', $date_naissance);
+        //             $requete_personne->bindParam(':personne', $id_acteur);
+        //             $requete_personne->execute();
+                    
+                    
+        //             echo "Les informations ont été mis à jour avec succès.";
+        //         } catch (\PDOException $e) {
+        //             echo "Erreur : " . $e->getMessage();
+        //         }
+        //     }
+        //     require 'view/modifierActeur.php';
+        // }
+        
+        public function modifyActeur($id)
+        {
+            $pdo = Connect::seConnecter();
+            if(isset($_POST['submit']))
+            {
+                $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // filter_sanitize.. empeche injection code html
+                $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+                $sexe = filter_input(INPUT_POST, "sexe", FILTER_VALIDATE_INT); // valide que si la saisie est nb entier
+                $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                
+                
+                
+                if($nom && $prenom && $sexe && $date_naissance) {
+                    
+                    $id_acteur = filter_input(INPUT_POST, "id_acteur", FILTER_VALIDATE_INT);
+                    // var_dump($id_film);
+                    
+                    // exit;
+                    if($id_acteur)
+                    {
+                        $requete = $pdo->prepare("UPDATE personne SET nom = :nom, prenom = :prenom, sexe = :sexe, date_naissance = :date_naissance 
+//                                                     WHERE id_personne = :id_personne");
+                        $requete->bindParam(':nom', $nom);
+                        $requete->bindParam(':prenom', $prenom);
+                        $requete->bindParam(':sexe', $sexe);
+                        $requete->bindParam(':date_naissance', $date_naissance);
+                        $requete->bindParam(':id_personne', $id_acteur);
+                        $requete->execute();
+                        echo "Le film a été modifié avec succès.";
+                    }else{echo "Le film n'a pas été modifié";
+                    }
+                }
+                
+            }
+            
+            
+            require 'view/modifierActeur.php';
+        }
+
+
             
     }
