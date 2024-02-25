@@ -2,7 +2,7 @@
 <h1>Modifier  un acteur</h1>
 <?php $id_acteur = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); ?>
 <form action="index.php?action=modifyActeur" method="post">
-                <input type="hidden" name="id_acteur" value="<?= $id_acteur ?>">
+                <input type="text" name="id_acteur" value="<?= $id_acteur ?>">
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Nom</label>
                     <input type="text"  class="form-control" name="nom">

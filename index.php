@@ -29,11 +29,11 @@
             case "formAddFilm" : $ctrlCinema->formAddFilm($id); break;
             case "addFilm" : $ctrlCinema->addFilm(); break;
             case "deleteFilm" : $ctrlCinema->deleteFilm($id); break;
-            case "modifyFilm" : $ctrlCinema->modifyFilm($id); break;
+            case "modifyFilm" : $ctrlCinema->modifyFilm(); break;
             case "formAddActeur" : $ctrlCinema->formAddActeur($id); break;
             case "addActeur" : $ctrlCinema->addActeur(); break;
             case "deleteActeur" : $ctrlCinema->deleteActeur($id); break;
-            case "deletemodify" : $ctrlCinema->modifyActeur($id); break;
+            case "modifyActeur" : $ctrlCinema->modifyActeur($id); break;
         }
     } else {
         $ctrlHome->home();
