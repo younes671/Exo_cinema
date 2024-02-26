@@ -1,7 +1,7 @@
 <?php  ob_start(); ?>
-<h1>Ajouter une acteur</h1>
+<h1>Ajouter un realisateur</h1>
 
-<form action="index.php?action=addActeur" method="post">
+<form action="index.php?action=addRealisateur" method="post">
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Nom</label>
                     <input type="text"  class="form-control" name="nom">
@@ -23,7 +23,7 @@
 
 <?php
 
-$titre = "Ajouter acteur";
-$titre_secondaire = "Ajouter acteur";
+$titre = "Ajouter realisateur";
+$titre_secondaire = "Ajouter realisateur";
 $content = ob_get_clean();
 require "view/Template.php";

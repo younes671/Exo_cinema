@@ -20,7 +20,7 @@
         <?php } ?>
     </tbody>
 </table>
-<a style='text-decoration:none'class='link-light' href='index.php?action=formAddActeur&id=<?= $acteur['id_acteur'] ?>'><button class='btn btn-success btn-sm' type='button'>Ajouter Acteur</button></a>
+<a style='text-decoration:none'class='link-light' href='index.php?action=addActeur&id=<?= $acteur['id_acteur'] ?>'><button class='btn btn-success btn-sm' type='button'>Ajouter Acteur</button></a>
 
 <?php
 $titre = "Liste des Acteurs";

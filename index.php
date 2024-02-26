@@ -26,14 +26,15 @@
             case "detailRealisateur" : $ctrlCinema->detailRealisateur($id); break;
             case "detailGenreFilm" : $ctrlCinema->detailGenreFilm($id); break;
             case "detailRole" : $ctrlCinema->detailRole($id); break;
-            case "formAddFilm" : $ctrlCinema->formAddFilm($id); break;
             case "addFilm" : $ctrlCinema->addFilm(); break;
             case "deleteFilm" : $ctrlCinema->deleteFilm($id); break;
             case "modifyFilm" : $ctrlCinema->modifyFilm(); break;
-            case "formAddActeur" : $ctrlCinema->formAddActeur($id); break;
             case "addActeur" : $ctrlCinema->addActeur(); break;
             case "deleteActeur" : $ctrlCinema->deleteActeur($id); break;
             case "modifyActeur" : $ctrlCinema->modifyActeur(); break;
+            case "addRealisateur" : $ctrlCinema->addRealisateur(); break;
+            case "deleteRealisateur" : $ctrlCinema->deleteRealisateur($id); break;
+            case "modifyRealisateur" : $ctrlCinema->modifyRealisateur($id); break;
         }
     } else {
         $ctrlHome->home();

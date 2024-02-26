@@ -1,7 +1,9 @@
 <?php  ob_start(); ?>
-<h1>Ajouter une acteur</h1>
+<h1>Modifier un realisateur</h1>
 
-<form action="index.php?action=addActeur" method="post">
+<?php $id_realisateur = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); ?>
+<form action="index.php?action=modifyRealisateur" method="post">
+                <input type="text" name="id_realisateur" value="<?= $id_realisateur ?>">
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Nom</label>
                     <input type="text"  class="form-control" name="nom">
@@ -18,12 +20,12 @@
                     <label for="disabledTextInput" class="form-label">Date de naissance</label>
                     <input type="date"  class="form-control" name="date_naissance">
                 </div>
-            <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+            <button type="submit" class="btn btn-primary" name="submit">Modifier</button>
         </form>
 
 <?php
 
-$titre = "Ajouter acteur";
-$titre_secondaire = "Ajouter acteur";
+$titre = "Modifier realisateur";
+$titre_secondaire = "Modifier realisateur";
 $content = ob_get_clean();
 require "view/Template.php";

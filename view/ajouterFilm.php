@@ -26,10 +26,11 @@
                     <label for="disabledTextInput" class="form-label">Note du film</label>
                     <input type="number"  class="form-control" name="note">
                 </div>
-                <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Réalisateur</label>
-                    <input type="number"  class="form-control" name="realisateur">
-                </div>
+                <select name="realisateurs" id="realisateurs" class="form-control" required>
+                <?php foreach($req_list->fetchAll() as $realisateur):?>
+                    <option value="<?= $realisateur['id_realisateur']?>"><?= $realisateur['prenom'] . " " . $realisateur['nom'] ?></option>
+                    <?php endforeach; ?>
+                </select>
             <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
         </form>
 
