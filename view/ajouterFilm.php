@@ -27,12 +27,12 @@
                     <input type="number"  class="form-control" name="note">
                 </div>
                 <select name="realisateurs" id="realisateurs" class="form-control" required>
-                <?php foreach($req_list->fetchAll() as $realisateur):?>
+                    <?php foreach($req_list->fetchAll() as $realisateur):?>
                     <option value="<?= $realisateur['id_realisateur']?>"><?= $realisateur['prenom'] . " " . $realisateur['nom'] ?></option>
                     <?php endforeach; ?>
                 </select>
-            <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
-        </form>
+        <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+</form>
 
 <?php
         

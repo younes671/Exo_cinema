@@ -35,6 +35,7 @@
             case "addRealisateur" : $ctrlCinema->addRealisateur(); break;
             case "deleteRealisateur" : $ctrlCinema->deleteRealisateur($id); break;
             case "modifyRealisateur" : $ctrlCinema->modifyRealisateur($id); break;
+            case "addCasting" : $ctrlCinema->addCasting(); break;
         }
     } else {
         $ctrlHome->home();

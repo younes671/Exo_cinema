@@ -47,6 +47,9 @@
                             <li class="nav-item">
                                 <a href="index.php?action=listRole" class="nav-link">Role acteurs</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="index.php?action=addCasting" class="nav-link">Ajouter Casting</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

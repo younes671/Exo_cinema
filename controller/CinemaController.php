@@ -33,125 +33,6 @@
             require 'view/detailFilm.php';
         }
 
-
-        public function listActeurs()
-        {
-            $pdo = Connect::seConnecter();
-            $requete = $pdo->prepare("SELECT *
-                                        FROM acteur a
-                                        INNER JOIN personne p ON p.id_personne = a.id_personne
-                                        ORDER BY a.id_acteur ");
-            $requete->execute();
-            require 'view/listActeurs.php';
-        }
-
-        public function detailActeur($id) {
-            $pdo = Connect::seConnecter();
-            $requete = $pdo->prepare("SELECT * 
-                                        FROM film f
-                                        INNER JOIN jouer j ON j.id_film = f.id_film
-                                        INNER JOIN acteur a ON a.id_acteur = j.id_acteur
-                                        INNER JOIN personne p ON p.id_personne = a.id_personne
-                                        WHERE a.id_acteur = :id");
-            $requete->execute(["id" => $id]);
-            $reqPlay = $pdo->prepare("SELECT *
-                                        FROM acteur a
-                                        INNER JOIN personne p ON p.id_personne = a.id_personne
-                                        INNER JOIN jouer j ON j.id_acteur = a.id_acteur
-                                        INNER JOIN film f ON f.id_film = j.id_film
-                                        INNER JOIN role r ON r.id_role = j.id_role
-                                        WHERE a.id_acteur = :id");
-            $reqPlay->execute(["id" => $id]);
-            require 'view/detailActeur.php';
-        }
-
-        public function listRealisateur()
-        {
-            $pdo = Connect::seConnecter();
-            $requete = $pdo->query("SELECT *
-                                        FROM realisateur r
-                                        INNER JOIN personne p ON p.id_personne = r.id_personne
-                                        ORDER BY prenom");
-            require 'view/listRealisateur.php';
-        }
-
-        public function detailRealisateur($id)
-        {
-            $pdo = Connect::seConnecter();
-            $realisation = $pdo->prepare("SELECT * 
-                                        FROM film f
-                                        INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
-                                        INNER JOIN personne p ON p.id_personne = r.id_personne
-                                        WHERE r.id_realisateur = :id");
-            $realisation->execute(["id" => $id]);
-            $requete = $pdo->prepare("SELECT * 
-                                        FROM realisateur r
-                                        INNER JOIN personne p ON p.id_personne = r.id_personne
-                                        WHERE r.id_realisateur = :id");
-            $requete->execute(["id" => $id]);
-            
-            require 'view/detailRealisateur.php';
-        }
-
-        public function listGenreFilm()
-        {
-            $pdo = Connect::seConnecter();
-            $requete = $pdo->query("SELECT *
-                                        FROM genre_film g
-                                        ORDER BY g.libelle");
-            require 'view/listGenreFilm.php';
-        }
-
-        public function detailGenreFilm($id)
-        {
-            $pdo = Connect::seConnecter();
-            $requete = $pdo->prepare("SELECT *
-                                        FROM genre_film gf
-                                        WHERE gf.id_genre = :id");
-            $requete->execute(["id" => $id]);
-            $film = $pdo->prepare("SELECT *
-                                    FROM film f
-                                    INNER JOIN typer t ON t.id_film = f.id_film
-                                    INNER JOIN genre_film gf ON gf.id_genre = t.id_genre
-                                    WHERE gf.id_genre = :id");
-            $film->execute(["id" => $id]);
-            
-            require 'view/detailGenreFilm.php';
-        }
-
-        public function listRole()
-        {
-            $pdo = Connect::seConnecter();
-            $requete = $pdo->query("SELECT * 
-                                        FROM personne p
-                                        INNER JOIN acteur a ON a.id_personne = p.id_personne
-                                        INNER JOIN jouer j ON j.id_acteur = a.id_acteur
-                                        INNER JOIN role r ON r.id_role = j.id_role
-                                        ORDER BY r.nom_role");
-            require 'view/listRole.php';
-        }
-
-        public function detailRole($id)
-        {
-            $pdo = Connect::seConnecter();
-            $requete = $pdo->prepare("SELECT * 
-                                        FROM personne p
-                                        INNER JOIN acteur a ON a.id_personne = p.id_personne
-                                        INNER JOIN jouer j ON j.id_acteur = a.id_acteur
-                                        INNER JOIN role r ON r.id_role = j.id_role
-                                        WHERE r.id_role = :id");
-            $requete->execute(["id" => $id]);
-            $acteur = $pdo->prepare("SELECT * 
-                                    FROM personne p
-                                    INNER JOIN acteur a ON a.id_personne = p.id_personne
-                                    INNER JOIN jouer j ON j.id_acteur = a.id_acteur
-                                    INNER JOIN role r ON r.id_role = j.id_role
-                                    WHERE r.id_role = :id");
-            $acteur->execute(["id" => $id]);
-            
-            require 'view/detailRole.php';
-        }
-
         public function addFilm()
         {
             $pdo = Connect::seConnecter();
@@ -262,8 +143,38 @@
        
         
         }
-              
 
+
+        public function listActeurs()
+        {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare("SELECT *
+                                        FROM acteur a
+                                        INNER JOIN personne p ON p.id_personne = a.id_personne
+                                        ORDER BY a.id_acteur ");
+            $requete->execute();
+            require 'view/listActeurs.php';
+        }
+
+        public function detailActeur($id) {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare("SELECT * 
+                                        FROM film f
+                                        INNER JOIN jouer j ON j.id_film = f.id_film
+                                        INNER JOIN acteur a ON a.id_acteur = j.id_acteur
+                                        INNER JOIN personne p ON p.id_personne = a.id_personne
+                                        WHERE a.id_acteur = :id");
+            $requete->execute(["id" => $id]);
+            $reqPlay = $pdo->prepare("SELECT *
+                                        FROM acteur a
+                                        INNER JOIN personne p ON p.id_personne = a.id_personne
+                                        INNER JOIN jouer j ON j.id_acteur = a.id_acteur
+                                        INNER JOIN film f ON f.id_film = j.id_film
+                                        INNER JOIN role r ON r.id_role = j.id_role
+                                        WHERE a.id_acteur = :id");
+            $reqPlay->execute(["id" => $id]);
+            require 'view/detailActeur.php';
+        }
 
         public function addActeur()
         {
@@ -300,180 +211,329 @@
             require 'view/ajouterActeur.php';
         }
 
-    public function deleteActeur($id)
-    {
-    $pdo = Connect::seConnecter();
-    
-    try {
-         // Sélectionner l'id de la personne associée à l'acteur
-         $requete_id_acteur = $pdo->prepare("SELECT id_personne FROM acteur WHERE id_acteur = :id");
-         $requete_id_acteur->execute(['id' => $id]);
-         $requete_id_personne = $requete_id_acteur->fetch();
-
-        // Supprimer l'acteur de la table jouer
-        $requete_jouer = $pdo->prepare("DELETE FROM jouer WHERE id_acteur = :id");
-        $requete_jouer->execute(["id" => $id]);
-        
-        // Supprimer l'acteur de la table acteur
-        $requete_acteur = $pdo->prepare("DELETE FROM acteur WHERE id_acteur = :id");
-        $requete_acteur->execute(["id" => $id]);
-
-        // Supprimer la personne associée à l'acteur de la table personne
-        $requete_personne = $pdo->prepare("DELETE FROM personne WHERE id_personne = :id");
-        $requete_personne->execute(["id" => $requete_id_personne['id_personne']]);
-        $this->listActeurs();
-        echo "L'acteur et toutes ses références ont été supprimés avec succès.";
-    } catch (\PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
-    }
-        require 'view/listActeurs.php';
-    }
-
-
-       
-    public function modifyActeur()
-    {
-        $pdo = Connect::seConnecter();
-        if(isset($_POST['submit']))
+        public function deleteActeur($id)
         {
-        $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);;
+        $pdo = Connect::seConnecter();
+        
         try {
+            // Sélectionner l'id de la personne associée à l'acteur
+            $requete_id_acteur = $pdo->prepare("SELECT id_personne FROM acteur WHERE id_acteur = :id");
+            $requete_id_acteur->execute(['id' => $id]);
+            $requete_id_personne = $requete_id_acteur->fetch();
+
+            // Supprimer l'acteur de la table jouer
+            $requete_jouer = $pdo->prepare("DELETE FROM jouer WHERE id_acteur = :id");
+            $requete_jouer->execute(["id" => $id]);
             
-            $id_acteur = filter_input(INPUT_POST, "id_acteur", FILTER_VALIDATE_INT);
-        //   var_dump($_POST['id_acteur']);
-        //   exit;
-            
-            $requete_personne = $pdo->prepare("UPDATE personne SET nom = $nom, prenom = $prenom, sexe = $sexe, date_naissance = $date_naissance 
-                                                    WHERE id_personne = $id_acteur");
-            
-            $requete_personne->execute();
-            
-            
-            
-            echo "Les informations ont été mis à jour avec succès.";
+            // Supprimer l'acteur de la table acteur
+            $requete_acteur = $pdo->prepare("DELETE FROM acteur WHERE id_acteur = :id");
+            $requete_acteur->execute(["id" => $id]);
+
+            // Supprimer la personne associée à l'acteur de la table personne
+            $requete_personne = $pdo->prepare("DELETE FROM personne WHERE id_personne = :id");
+            $requete_personne->execute(["id" => $requete_id_personne['id_personne']]);
+            $this->listActeurs();
+            echo "L'acteur et toutes ses références ont été supprimés avec succès.";
         } catch (\PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }
+            require 'view/listActeurs.php';
         }
-        require 'view/modifierActeur.php';
-    }
 
 
-
-    public function addrealisateur()
-    {
-        $pdo = Connect::seConnecter();
-        if(isset($_POST['submit']))
+        
+        public function modifyActeur()
         {
+            $pdo = Connect::seConnecter();
+            if(isset($_POST['submit']))
+            {
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);;
-            
             try {
-                // 1. Insérer les données dans la table `personne`
-                $requete_personne = $pdo->prepare("INSERT INTO personne (nom, prenom, sexe, date_naissance) VALUES (:nom, :prenom, :sexe, :date_naissance)");
+                
+                $id_acteur = filter_input(INPUT_POST, "id_acteur", FILTER_VALIDATE_INT);
+            
+            
+                
+                $requete_personne = $pdo->prepare("UPDATE personne SET nom = :nom, prenom = :prenom, sexe = :sexe, date_naissance = :date_naissance 
+                                                        WHERE id_personne = :id");
                 $requete_personne->bindParam(':nom', $nom);
                 $requete_personne->bindParam(':prenom', $prenom);
                 $requete_personne->bindParam(':sexe', $sexe);
                 $requete_personne->bindParam(':date_naissance', $date_naissance);
+                $requete_personne->bindParam(':id', $id_acteur);
                 $requete_personne->execute();
-            
-                // 2. Récupérer l'ID de la personne nouvellement insérée
-                $id_personne = $pdo->lastInsertId();
-            
-                // 3. Insérer les données dans la table `acteur`
-                $requete_acteur = $pdo->prepare("INSERT INTO realisateur (id_personne) VALUES (:id_personne)");
-                $requete_acteur->bindParam(':id_personne', $id_personne);
-                $requete_acteur->execute();
-            
-                echo "Le realisateur a été ajouté avec succès.";
+                
+                
+                
+                echo "Les informations ont été mis à jour avec succès.";
             } catch (\PDOException $e) {
                 echo "Erreur : " . $e->getMessage();
             }
+            }
+            require 'view/modifierActeur.php';
         }
-        require 'view/ajouterRealisateur.php';
-    }
 
-    public function deleteRealisateur($id)
-    {
-    $pdo = Connect::seConnecter();
-    
-    try {
-         // Sélectionner l'id de la personne associée au realisateur
-         $requete_id_realisateur = $pdo->prepare("SELECT id_personne FROM realisateur WHERE id_realisateur = :id");
-         $requete_id_realisateur->execute(['id' => $id]);
-         $requete_id_personne = $requete_id_realisateur->fetch();
 
-         
-
-         $req_id_film =$pdo->prepare("SELECT id_film FROM film WHERE id_realisateur = :id");
-         $req_id_film->execute(['id' => $id]);
-         $requete_id_film = $req_id_film->fetch();
-        
-        $req_jouer = $pdo->prepare("SELECT id_film FROM jouer WHERE id_film = :id");
-        $req_jouer->execute(['id' => $requete_id_film['id_film']]);
-
-        $req_typer =$pdo->prepare("DELETE FROM typer WHERE id_film = :id");
-        $req_typer->execute(['id' => $requete_id_film['id_film']]);
-
-        // Supprimer le realisateur de la table film
-        $requete_film = $pdo->prepare("DELETE FROM film WHERE id_realisateur = :id");
-        $requete_film->execute(["id" => $id]);
-
-        
-        // Supprimer le realisateur de la table realisateur
-        $requete_acteur = $pdo->prepare("DELETE FROM realisateur WHERE id_realisateur = :id");
-        $requete_acteur->execute(["id" => $id]);
-
-        // Supprimer la personne associée au realisateur de la table personne
-        $requete_personne = $pdo->prepare("DELETE FROM personne WHERE id_personne = :id");
-        $requete_personne->execute(["id" => $requete_id_personne['id_personne']]);
-        $this->listRealisateur();
-    
-        echo "Le realisateur et toutes ses références ont été supprimés avec succès.";
-    } catch (\PDOException $e) {
-        echo "Erreur : " . $e->getMessage();
-    }
-       
-    }
-
-    public function modifyRealisateur($id)
-    {
-        $pdo = Connect::seConnecter();
-        if(isset($_POST['submit']))
+        public function listRealisateur()
         {
-        $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);;
-        try {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->query("SELECT *
+                                        FROM realisateur r
+                                        INNER JOIN personne p ON p.id_personne = r.id_personne
+                                        ORDER BY prenom");
+            require 'view/listRealisateur.php';
+        }
 
-           
+        public function detailRealisateur($id)
+        {
+            $pdo = Connect::seConnecter();
+            $realisation = $pdo->prepare("SELECT * 
+                                        FROM film f
+                                        INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
+                                        INNER JOIN personne p ON p.id_personne = r.id_personne
+                                        WHERE r.id_realisateur = :id");
+            $realisation->execute(["id" => $id]);
+            $requete = $pdo->prepare("SELECT * 
+                                        FROM realisateur r
+                                        INNER JOIN personne p ON p.id_personne = r.id_personne
+                                        WHERE r.id_realisateur = :id");
+            $requete->execute(["id" => $id]);
             
-            $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT);
+            require 'view/detailRealisateur.php';
+        }
+
+        public function addrealisateur()
+        {
+            $pdo = Connect::seConnecter();
+            if(isset($_POST['submit']))
+            {
+                $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);;
+                
+                try {
+                    // 1. Insérer les données dans la table `personne`
+                    $requete_personne = $pdo->prepare("INSERT INTO personne (nom, prenom, sexe, date_naissance) VALUES (:nom, :prenom, :sexe, :date_naissance)");
+                    $requete_personne->bindParam(':nom', $nom);
+                    $requete_personne->bindParam(':prenom', $prenom);
+                    $requete_personne->bindParam(':sexe', $sexe);
+                    $requete_personne->bindParam(':date_naissance', $date_naissance);
+                    $requete_personne->execute();
+                
+                    // 2. Récupérer l'ID de la personne nouvellement insérée
+                    $id_personne = $pdo->lastInsertId();
+                
+                    // 3. Insérer les données dans la table `acteur`
+                    $requete_acteur = $pdo->prepare("INSERT INTO realisateur (id_personne) VALUES (:id_personne)");
+                    $requete_acteur->bindParam(':id_personne', $id_personne);
+                    $requete_acteur->execute();
+                
+                    echo "Le realisateur a été ajouté avec succès.";
+                } catch (\PDOException $e) {
+                    echo "Erreur : " . $e->getMessage();
+                }
+            }
+            require 'view/ajouterRealisateur.php';
+        }
+    
+        public function deleteRealisateur($id)
+        {
+        $pdo = Connect::seConnecter();
+        
+        try {
+             // Sélectionner l'id de la personne associée au realisateur
+             $requete_id_realisateur = $pdo->prepare("SELECT id_personne FROM realisateur WHERE id_realisateur = :id");
+             $requete_id_realisateur->execute(['id' => $id]);
+             $requete_id_personne = $requete_id_realisateur->fetch();
+    
+             
+    
+             $req_id_film =$pdo->prepare("SELECT id_film FROM film WHERE id_realisateur = :id");
+             $req_id_film->execute(['id' => $id]);
+             $requete_id_film = $req_id_film->fetch();
             
+            $req_jouer = $pdo->prepare("SELECT id_film FROM jouer WHERE id_film = :id");
+            $req_jouer->execute(['id' => $requete_id_film['id_film']]);
+    
+            $req_typer =$pdo->prepare("DELETE FROM typer WHERE id_film = :id");
+            $req_typer->execute(['id' => $requete_id_film['id_film']]);
+    
+            // Supprimer le realisateur de la table film
+            $requete_film = $pdo->prepare("DELETE FROM film WHERE id_realisateur = :id");
+            $requete_film->execute(["id" => $id]);
+    
             
-            
-            $requete_personne = $pdo->prepare("UPDATE personne SET nom = $nom, prenom = $prenom, sexe = $sexe, date_naissance = $date_naissance 
-                                                    WHERE id_personne = :id");
-            
-            $requete_personne->execute(['id' => $id_realisateur]);
-            
-            
-            
+            // Supprimer le realisateur de la table realisateur
+            $requete_acteur = $pdo->prepare("DELETE FROM realisateur WHERE id_realisateur = :id");
+            $requete_acteur->execute(["id" => $id]);
+    
+            // Supprimer la personne associée au realisateur de la table personne
+            $requete_personne = $pdo->prepare("DELETE FROM personne WHERE id_personne = :id");
+            $requete_personne->execute(["id" => $requete_id_personne['id_personne']]);
             $this->listRealisateur();
-            echo "Les informations ont été mis à jour avec succès.";
+        
+            echo "Le realisateur et toutes ses références ont été supprimés avec succès.";
         } catch (\PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }
+           
         }
-        require 'view/modifierRealisateur.php';
+    
+        public function modifyRealisateur($id)
+        {
+            $pdo = Connect::seConnecter();
+            if(isset($_POST['submit']))
+            {
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $date_naissance = filter_input(INPUT_POST, "date_naissance", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            try {
+    
+                
+                
+                $id_realisateur = filter_input(INPUT_POST, "id_realisateur", FILTER_VALIDATE_INT);
+                // var_dump($_POST);
+                // exit;
+                
+                
+                
+                $requete_personne = $pdo->prepare("UPDATE personne SET nom = :nom, prenom = :prenom, sexe = :sexe, date_naissance = :date_naissance 
+                                                        WHERE id_personne = :id");
+                 $requete_personne->bindParam(':nom', $nom);
+                 $requete_personne->bindParam(':prenom', $prenom);
+                 $requete_personne->bindParam(':sexe', $sexe);
+                 $requete_personne->bindParam(':date_naissance', $date_naissance);
+                 $requete_personne->bindParam(':id', $id_realisateur);
+                 $requete_personne->execute();
+                
+                
+                $this->listRealisateur();
+                
+                echo "Les informations ont été mis à jour avec succès.";
+            } catch (\PDOException $e) {
+                echo "Erreur : " . $e->getMessage();
+            }
+            }
+            require 'view/modifierRealisateur.php';
+        }
+
+        public function listGenreFilm()
+        {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->query("SELECT *
+                                        FROM genre_film g
+                                        ORDER BY g.libelle");
+            require 'view/listGenreFilm.php';
+        }
+
+        public function detailGenreFilm($id)
+        {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare("SELECT *
+                                        FROM genre_film gf
+                                        WHERE gf.id_genre = :id");
+            $requete->execute(["id" => $id]);
+            $film = $pdo->prepare("SELECT *
+                                    FROM film f
+                                    INNER JOIN typer t ON t.id_film = f.id_film
+                                    INNER JOIN genre_film gf ON gf.id_genre = t.id_genre
+                                    WHERE gf.id_genre = :id");
+            $film->execute(["id" => $id]);
+            
+            require 'view/detailGenreFilm.php';
+        }
+
+        public function listRole()
+        {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->query("SELECT * 
+                                        FROM personne p
+                                        INNER JOIN acteur a ON a.id_personne = p.id_personne
+                                        INNER JOIN jouer j ON j.id_acteur = a.id_acteur
+                                        INNER JOIN role r ON r.id_role = j.id_role
+                                        ORDER BY r.nom_role");
+            require 'view/listRole.php';
+        }
+
+        public function detailRole($id)
+        {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare("SELECT * 
+                                        FROM personne p
+                                        INNER JOIN acteur a ON a.id_personne = p.id_personne
+                                        INNER JOIN jouer j ON j.id_acteur = a.id_acteur
+                                        INNER JOIN role r ON r.id_role = j.id_role
+                                        WHERE r.id_role = :id");
+            $requete->execute(["id" => $id]);
+            $acteur = $pdo->prepare("SELECT * 
+                                    FROM personne p
+                                    INNER JOIN acteur a ON a.id_personne = p.id_personne
+                                    INNER JOIN jouer j ON j.id_acteur = a.id_acteur
+                                    INNER JOIN role r ON r.id_role = j.id_role
+                                    WHERE r.id_role = :id");
+            $acteur->execute(["id" => $id]);
+            
+            require 'view/detailRole.php';
+        }
+
+        public function addCasting()
+        {
+            $pdo = Connect::seConnecter();
+
+            $req_casting = $pdo->prepare("SELECT DISTINCT j.id_film, f.titre, a.id_acteur, p.nom, p.prenom, r.id_role, r.nom_role
+                                            FROM jouer j
+                                            INNER JOIN film f ON f.id_film = j.id_film
+                                            INNER JOIN acteur a ON a.id_acteur = j.id_acteur
+                                            INNER JOIN role r ON r.id_role = j.id_role
+                                            INNER JOIN personne p ON p.id_personne = a.id_personne");
+            $req_casting->execute();
+            
+            if(isset($_POST['submit']))
+            {
+                
+                $film = filter_input(INPUT_POST, "id_film", FILTER_VALIDATE_INT); 
+                $acteur = filter_input(INPUT_POST, "id_acteur", FILTER_VALIDATE_INT); 
+                $role = filter_input(INPUT_POST, "id_role", FILTER_VALIDATE_INT);
+                
+                
+                
+               
+                if($film && $acteur && $role) {
+                   
+                   
+                   
+                    $requete = $pdo->prepare("INSERT INTO jouer (id_film, id_acteur, id_role) 
+                                                VALUES (:id_film, :id_acteur, :id_role)");
+                    $requete->bindParam(':id_film', $film);
+                    $requete->bindParam(':id_acteur', $acteur);
+                    $requete->bindParam(':id_role', $role);
+                    $requete->execute();
+                    echo "Le casting a été ajouté avec succès.";
+                    }else{echo "Le casting n'a pas été ajouté";
+                    }
+            }
+       
+        
+            require 'view/ajouterCasting.php';
+        }
     }
+
+        
+              
+
+
+        
+
+
+   
+
+
         
 
             
-    }
+    

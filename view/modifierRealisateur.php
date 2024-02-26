@@ -3,7 +3,7 @@
 
 <?php $id_realisateur = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); ?>
 <form action="index.php?action=modifyRealisateur" method="post">
-                <input type="text" name="id_realisateur" value="<?= $id_realisateur ?>">
+                <input type="hidden" name="id_realisateur" value="<?= $id_realisateur ?>">
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Nom</label>
                     <input type="text"  class="form-control" name="nom">
