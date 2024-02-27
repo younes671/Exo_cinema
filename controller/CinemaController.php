@@ -485,13 +485,18 @@
         {
             $pdo = Connect::seConnecter();
 
-            $req_casting = $pdo->prepare("SELECT DISTINCT j.id_film, f.titre, a.id_acteur, p.nom, p.prenom, r.id_role, r.nom_role
-                                            FROM jouer j
-                                            INNER JOIN film f ON f.id_film = j.id_film
-                                            INNER JOIN acteur a ON a.id_acteur = j.id_acteur
-                                            INNER JOIN role r ON r.id_role = j.id_role
-                                            INNER JOIN personne p ON p.id_personne = a.id_personne");
-            $req_casting->execute();
+            $req_casting_film = $pdo->prepare("SELECT *
+                                                    FROM film");
+            $req_casting_film->execute();
+
+            $req_casting_acteur = $pdo->prepare("SELECT *
+                                                    FROM acteur a
+                                                    INNER JOIN personne p ON p.id_personne = a.id_personne");
+            $req_casting_acteur->execute();
+
+            $req_casting_role = $pdo->prepare("SELECT*
+                                                    FROM role");
+            $req_casting_role->execute();
             
             if(isset($_POST['submit']))
             {

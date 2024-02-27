@@ -257,3 +257,10 @@ p{
     text-shadow: 1px 5px 5px black;
     font-weight: bolder;
 }
+
+
+@media(min-width = 1000px){
+    .container-fluid{
+        display: block;
+    }
+}
