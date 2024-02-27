@@ -499,16 +499,19 @@
             $pdo = Connect::seConnecter();
 
             $req_casting_film = $pdo->prepare("SELECT *
-                                                    FROM film");
+                                                    FROM film
+                                                    ORDER BY titre");
             $req_casting_film->execute();
 
             $req_casting_acteur = $pdo->prepare("SELECT *
                                                     FROM acteur a
-                                                    INNER JOIN personne p ON p.id_personne = a.id_personne");
+                                                    INNER JOIN personne p ON p.id_personne = a.id_personne
+                                                    ORDER BY p.nom");
             $req_casting_acteur->execute();
 
             $req_casting_role = $pdo->prepare("SELECT*
-                                                    FROM role");
+                                                    FROM role
+                                                    ORDER BY nom_role");
             $req_casting_role->execute();
             
             if(isset($_POST['submit']))

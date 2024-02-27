@@ -7,7 +7,7 @@ $playActeurs = $reqPlay->fetchAll();
 <?php
 foreach($playActeurs as $playActeur) 
 {
-    echo "<h2>Film : " . $playActeur["titre"] . "<br>" . $playActeur["nom_role"] . "</h2>";
+    echo "<h2>A jouer dans le film : " . $playActeur["titre"] . "<br>Dans le role de : " . $playActeur["nom_role"] . "</h2>";
 }
 ?>
 

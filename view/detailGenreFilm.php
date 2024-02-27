@@ -4,9 +4,14 @@ $films = $film->fetchAll();
 ?>
 <h2><?= "Genre film : " .$genre["libelle"] ?></h2>
 <?php
-foreach($films as $film) 
+if($films)
 {
-    echo "<h2>Nom du Film : " . $film["titre"] . "</h2>";
+    foreach($films as $film) 
+    {
+            echo "<h2>Nom du Film : " . $film["titre"] . "</h2>";
+    }
+}else{
+    echo "<h2>Il n'y a aucun film de ce genre</h2>";
 }
 
 

@@ -8,21 +8,22 @@ $castingRole = $req_casting_role->fetchAll();
 
 ?>
 
-<form action="index.php?action=addCasting" method="post">
+<form class="form" action="index.php?action=addCasting" method="post">
 
-                <select name="id_film" id="id_film" class="form-control" required>
+    <label  class="label">Choisissez un film</label>
+                <select class="select" name="id_film" id="id_film" class="form-control" required>
                     <?php foreach($castingFilm as $cast): ?>
                         <option value="<?= $cast['id_film'] ?>"><?= $cast['titre'] ?></option>
                     <?php endforeach; ?>
                 </select>
-
-                <select name="id_acteur" id="id_acteur" class="form-control" required>
+                <label  class="label">Choisissez un acteur</label>
+                <select class="select" name="id_acteur" id="id_acteur" class="form-control" required>
                     <?php foreach($castingActeur as $cast): ?>
                         <option value="<?= $cast['id_acteur'] ?>"><?= $cast['prenom'] . " " . $cast['nom'] ?></option>
                     <?php endforeach; ?>
                 </select>
-
-                <select name="id_role" id="id_role" class="form-control" required>
+                <label  class="label">Choisissez un role</label>
+                <select class="select" name="id_role" id="id_role" class="form-control" required>
                     <?php foreach($castingRole as $cast): ?>
                         <option value="<?= $cast['id_role'] ?>"><?= $cast['nom_role'] ?></option>
                     <?php endforeach; ?>

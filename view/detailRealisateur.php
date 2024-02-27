@@ -7,7 +7,7 @@ $realisationFilms = $realisation->fetchAll();
 <?php
 foreach($realisationFilms as $realisationFilm) 
 {
-    echo "<h2>Film : " . $realisationFilm["titre"] . " en " . $realisationFilm["annee_sortie"] . "</h2>";
+    echo "<h2>Film réalisé : " . $realisationFilm["titre"] . " en " . $realisationFilm["annee_sortie"] . "</h2>";
 }
 
 

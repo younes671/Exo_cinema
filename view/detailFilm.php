@@ -4,11 +4,20 @@
     $casting = $reqCasting->fetchAll();
 ?>
 
-<h1><?= $film["titre"] . "<br><br>Année de sortie : " . $film["annee_sortie"] . "<br><br>Durée : " . $film["duree"] . " min<br><br> Affiche : " . $film["affiche"] . "<br><br>Synopsis : <br>" . $film["synopsis"] . "<br><br>Note : " . $film["note"] . " étoiles<br><br> Réalisateur : " . $film["prenom"] . " " . $film["nom"] . "<br>" ?></h1>
+
+
+<h1><?= $film["titre"] ?></h1>
+<h1>Année de sortie :  <?= $film["annee_sortie"] ?></h1>
+<h3>Durée : <?= $film["duree"] ?>min</h3>
+<h2>Affiche : </h2><p class="descritpion"><?= $film["affiche"] ?></p>
+<h2>Synopsis :</h2> <p class="description"><?= $film["synopsis"] ?></p>
+<h3>Note : <?= $film["note"] ?></h3>
+<h3>Réalisateur : <?= $film["prenom"] . " " . $film["nom"] ?></h3>
+
 <h2>Casting : </h2>
 <?php foreach($casting as $cast) 
 {
-    echo "<h3>" . $cast["prenom"] . " " . $cast["nom"] . " dans le role de " . $cast["nom_role"] . "</h3><br>";
+    echo "<h3>" . $cast["prenom"] . " " . $cast["nom"] . "</h3> <p class='description'>dans le role de :<h3>" . $cast["nom_role"] . "</h3></p>";
 }
 
 
