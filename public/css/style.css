@@ -285,7 +285,10 @@ p{
 .select{
     display: flex;
     width: 35%;
-    border-radius: 10px;
+    border-radius: 5px;
+    height: 35px;
+    font-family: 'inria Serif';
+    color: #af1d1d;
 }
 
 .label{
