@@ -20,9 +20,6 @@
                                 <i class="fa-solid fa-clapperboard"></i>
                                 <p class="text-logo">CinéMax</p>
                             </div>
-                            <div class="loupe">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </div>
                             <div class="user">
                                 <i class="fa-solid fa-user"></i>
                             </div>

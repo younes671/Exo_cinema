@@ -33,7 +33,7 @@
                 </div>
           </div>
     </section>
-    <section class="sortieDeLaSemaine">
+    <!-- <section class="sortieDeLaSemaine">
         <div class="titre-sortieDeLaSemaine">
             <p>Sortie de la semaine</p>
         </div>
@@ -55,7 +55,7 @@
             </div>
 
         </div>
-    </section>
+    </section> -->
 
     <?php
 $titre = "Home";

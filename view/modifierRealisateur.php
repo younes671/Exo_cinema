@@ -2,7 +2,7 @@
 <h1>Modifier un realisateur</h1>
 
 <?php $id_realisateur = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); ?>
-<form action="index.php?action=modifyRealisateur" method="post">
+<form class="form" action="index.php?action=modifyRealisateur" method="post">
                 <input type="hidden" name="id_realisateur" value="<?= $id_realisateur ?>">
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Nom</label>

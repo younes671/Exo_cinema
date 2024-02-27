@@ -103,6 +103,17 @@
         public function modifyFilm()
         {
             $pdo = Connect::seConnecter();
+
+            $id_film = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+            
+
+            $info_film = $pdo->prepare("SELECT * 
+                                                        FROM film f
+                                                        INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
+                                                        INNER JOIN personne p ON p.id_personne = r.id_personne
+                                                        WHERE f.id_film = :id");
+                        $info_film->execute(['id' => $id_film]);
+           
             if(isset($_POST['submit']))
             {
                 $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // filter_sanitize.. empeche injection code html
@@ -117,6 +128,8 @@
                 if($titre && $annee_sortie && $duree && $affiche && $synopsis && $note && $realisateur) {
                     
                     $id_film = filter_input(INPUT_POST, "id_film", FILTER_VALIDATE_INT);
+
+                    
                     // var_dump($id_film);
                     
                     // exit;
@@ -451,7 +464,7 @@
         public function listRole()
         {
             $pdo = Connect::seConnecter();
-            $requete = $pdo->query("SELECT * 
+            $requete = $pdo->query("SELECT DISTINCT r.id_role, r.nom_role 
                                         FROM personne p
                                         INNER JOIN acteur a ON a.id_personne = p.id_personne
                                         INNER JOIN jouer j ON j.id_acteur = a.id_acteur
