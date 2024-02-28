@@ -343,9 +343,21 @@ h3{
     width: 60%;
 }
 
+.mb-3-1{
+    width: 60%;
+    height: 40px;
+    border-radius: 5px;
+}
+
 .btn{
     margin-bottom: 15px;
     background-color: #1e1f22;
+    border-color: #af1d1d;
+    color: #af1d1d;
+}
+
+.form-control{
+    font-family: 'inria Serif';
 }
 
 .uk-table{

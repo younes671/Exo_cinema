@@ -40,6 +40,10 @@
                                             INNER JOIN personne p ON p.id_personne = r.id_personne");
             $req_list->execute();
 
+            $req_genre = $pdo->prepare("SELECT DISTINCT id_genre, libelle 
+                                                FROM genre_film");
+            $req_genre->execute();
+
             if(isset($_POST['submit']))
             {
                 $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // filter_sanitize.. empeche injection code html
@@ -66,8 +70,8 @@
                     $requete->bindParam(':note', $note);
                     $requete->bindParam(':id_realisateur', $realisateur);
                     $requete->execute();
-                    echo "Le film a été ajouté avec succès.";
-                    }else{echo "Le film n'a pas été ajouté";
+                    echo "<h2>Le film a été ajouté avec succès.</h2>";
+                    }else{echo "<h2>Le film n'a pas été ajouté</h2>";
                     }
             }
        
@@ -97,7 +101,7 @@
 
             
             $this->listFilms();
-            echo "Le film a été supprimé avec succès";
+            echo "<h2>Le film a été supprimé avec succès</h2>";
         }
 
         public function modifyFilm()
@@ -146,8 +150,8 @@
                         $requete->bindParam(':id_realisateur', $realisateur);
                         $requete->bindParam(':id_film', $id_film);
                         $requete->execute();
-                        echo "Le film a été modifié avec succès.";
-                    }else{echo "Le film n'a pas été modifié";
+                        echo "<h2>Le film a été modifié avec succès.</h2>";
+                    }else{echo "<h2>Le film n'a pas été modifié</h2>";
                     }
                 }
                 
@@ -216,7 +220,7 @@
                     $requete_acteur->bindParam(':id_personne', $id_personne);
                     $requete_acteur->execute();
                 
-                    echo "L'acteur a été ajouté avec succès.";
+                    echo "<h2>L'acteur a été ajouté avec succès.</h2>";
                 } catch (\PDOException $e) {
                     echo "Erreur : " . $e->getMessage();
                 }
@@ -246,7 +250,7 @@
             $requete_personne = $pdo->prepare("DELETE FROM personne WHERE id_personne = :id");
             $requete_personne->execute(["id" => $requete_id_personne['id_personne']]);
             $this->listActeurs();
-            echo "L'acteur et toutes ses références ont été supprimés avec succès.";
+            echo "<h2>L'acteur et toutes ses références ont été supprimés avec succès.</h2>";
         } catch (\PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }
@@ -258,6 +262,15 @@
         public function modifyActeur()
         {
             $pdo = Connect::seConnecter();
+
+            $id_acteur = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+            $info_acteur = $pdo->prepare("SELECT * 
+                                                FROM acteur a
+                                                INNER JOIN personne p ON p.id_personne = a.id_personne
+                                                WHERE a.id_acteur = :id");
+            $info_acteur->execute(['id' => $id_acteur]);
+
             if(isset($_POST['submit']))
             {
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -281,7 +294,7 @@
                 
                 
                 
-                echo "Les informations ont été mis à jour avec succès.";
+                echo "<h2>Les informations ont été mis à jour avec succès.</h2>";
             } catch (\PDOException $e) {
                 echo "Erreur : " . $e->getMessage();
             }
@@ -318,7 +331,7 @@
             require 'view/detailRealisateur.php';
         }
 
-        public function addrealisateur()
+        public function addRealisateur()
         {
             $pdo = Connect::seConnecter();
             if(isset($_POST['submit']))
@@ -341,11 +354,11 @@
                     $id_personne = $pdo->lastInsertId();
                 
                     // 3. Insérer les données dans la table `acteur`
-                    $requete_acteur = $pdo->prepare("INSERT INTO realisateur (id_personne) VALUES (:id_personne)");
-                    $requete_acteur->bindParam(':id_personne', $id_personne);
-                    $requete_acteur->execute();
+                    $requete = $pdo->prepare("INSERT INTO realisateur (id_personne) VALUES (:id_personne)");
+                    $requete->bindParam(':id_personne', $id_personne);
+                    $requete->execute();
                 
-                    echo "Le realisateur a été ajouté avec succès.";
+                    echo "<h2>Le realisateur a été ajouté avec succès.</h2>";
                 } catch (\PDOException $e) {
                     echo "Erreur : " . $e->getMessage();
                 }
@@ -389,7 +402,7 @@
             $requete_personne->execute(["id" => $requete_id_personne['id_personne']]);
             $this->listRealisateur();
         
-            echo "Le realisateur et toutes ses références ont été supprimés avec succès.";
+            echo "<h2>Le realisateur et toutes ses références ont été supprimés avec succès.</h2>";
         } catch (\PDOException $e) {
             echo "Erreur : " . $e->getMessage();
         }
@@ -399,6 +412,15 @@
         public function modifyRealisateur($id)
         {
             $pdo = Connect::seConnecter();
+
+            $id_realisateur = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+            $info_realisateur = $pdo->prepare("SELECT * 
+                                                FROM realisateur r
+                                                INNER JOIN personne p ON p.id_personne = r.id_personne
+                                                WHERE r.id_realisateur = :id");
+            $info_realisateur->execute(['id' => $id_realisateur]);
+
             if(isset($_POST['submit']))
             {
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -415,19 +437,18 @@
                 
                 
                 
-                $requete_personne = $pdo->prepare("UPDATE personne SET nom = :nom, prenom = :prenom, sexe = :sexe, date_naissance = :date_naissance 
+                $requete = $pdo->prepare("UPDATE personne SET nom = :nom, prenom = :prenom, sexe = :sexe, date_naissance = :date_naissance 
                                                         WHERE id_personne = :id");
-                 $requete_personne->bindParam(':nom', $nom);
-                 $requete_personne->bindParam(':prenom', $prenom);
-                 $requete_personne->bindParam(':sexe', $sexe);
-                 $requete_personne->bindParam(':date_naissance', $date_naissance);
-                 $requete_personne->bindParam(':id', $id_realisateur);
-                 $requete_personne->execute();
+                 $requete->bindParam(':nom', $nom);
+                 $requete->bindParam(':prenom', $prenom);
+                 $requete->bindParam(':sexe', $sexe);
+                 $requete->bindParam(':date_naissance', $date_naissance);
+                 $requete->bindParam(':id', $id_realisateur);
+                 $requete->execute();
                 
                 
-                $this->listRealisateur();
                 
-                echo "Les informations ont été mis à jour avec succès.";
+                echo "<h2>Les informations ont été mis à jour avec succès.</h2>";
             } catch (\PDOException $e) {
                 echo "Erreur : " . $e->getMessage();
             }
@@ -461,15 +482,92 @@
             require 'view/detailGenreFilm.php';
         }
 
+        public function addGenre()
+        {
+            $pdo = Connect::seConnecter();
+            if(isset($_POST['submit']))
+            {
+                $libelle = filter_input(INPUT_POST, "libelle", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                
+                
+                try {
+                    // 1. Insérer les données dans la table `personne`
+                    $requete = $pdo->prepare("INSERT INTO genre_film (libelle) VALUES (:libelle)");
+                    $requete->bindParam(':libelle', $libelle);
+                    $requete->execute();
+                    echo "<h2>Le genre a été ajouté avec succès.</h2>";
+                    
+                } catch (\PDOException $e) {
+                    echo "Erreur : " . $e->getMessage();
+                }
+            }
+            require 'view/ajouterGenre.php';
+        }
+
+        public function deleteGenre($id)
+        {
+        $pdo = Connect::seConnecter();
+        
+        try {
+             
+            
+            $req_genre = $pdo->prepare("DELETE FROM genre_film WHERE id_genre = :id");
+            $req_genre->execute(['id' => $id]);
+
+            $this->listGenreFilm();
+        
+            echo "<h2>Le genre a été supprimés avec succès.</h2>";
+        } catch (\PDOException $e) {
+            echo "Erreur : " . $e->getMessage();
+        }
+           
+        }
+
+        public function modifyGenre($id)
+        {
+            $pdo = Connect::seConnecter();
+
+            $id_genre = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+            $info_genre = $pdo->prepare("SELECT * 
+                                                FROM genre_film
+                                                WHERE id_genre = :id");
+            $info_genre->execute(['id' => $id_genre]);
+
+            if(isset($_POST['submit']))
+            {
+            $libelle = filter_input(INPUT_POST, "libelle", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            try {
+    
+                
+                
+                $id_genre = filter_input(INPUT_POST, "id_genre", FILTER_VALIDATE_INT);
+                // var_dump($_POST);
+                // exit;
+                
+                
+                
+                $requete = $pdo->prepare("UPDATE genre_film SET libelle = :libelle 
+                                                        WHERE id_genre = :id");
+                 $requete->bindParam(':libelle', $libelle);
+                 $requete->bindParam(':id', $id_genre);
+                 $requete->execute();
+                
+                
+                echo "<h2>Les informations ont été mis à jour avec succès.</h2>";
+            } catch (\PDOException $e) {
+                echo "Erreur : " . $e->getMessage();
+            }
+            }
+            require 'view/modifierGenre.php';
+        }
+
         public function listRole()
         {
             $pdo = Connect::seConnecter();
-            $requete = $pdo->query("SELECT DISTINCT r.id_role, r.nom_role 
-                                        FROM personne p
-                                        INNER JOIN acteur a ON a.id_personne = p.id_personne
-                                        INNER JOIN jouer j ON j.id_acteur = a.id_acteur
-                                        INNER JOIN role r ON r.id_role = j.id_role
-                                        ORDER BY r.nom_role");
+            $requete = $pdo->query("SELECT DISTINCT id_role, nom_role 
+                                        FROM role
+                                        ORDER BY nom_role");
             require 'view/listRole.php';
         }
 
@@ -487,11 +585,92 @@
                                     FROM personne p
                                     INNER JOIN acteur a ON a.id_personne = p.id_personne
                                     INNER JOIN jouer j ON j.id_acteur = a.id_acteur
+                                    INNER JOIN film f ON f.id_film = j.id_film
                                     INNER JOIN role r ON r.id_role = j.id_role
                                     WHERE r.id_role = :id");
             $acteur->execute(["id" => $id]);
             
             require 'view/detailRole.php';
+        }
+
+        public function addRole()
+        {
+            $pdo = Connect::seConnecter();
+            if(isset($_POST['submit']))
+            {
+                $nom_role = filter_input(INPUT_POST, "nom_role", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                
+                
+                try {
+                    
+                    $requete = $pdo->prepare("INSERT INTO role (nom_role) VALUES (:nom_role)");
+                    $requete->bindParam(':nom_role', $nom_role);
+                    $requete->execute();
+                    echo "<h2>Le role a été ajouté avec succès.</h2>";
+                    
+                } catch (\PDOException $e) {
+                    echo "Erreur : " . $e->getMessage();
+                }
+            }
+            require 'view/ajouterRole.php';
+        }
+
+        public function deleteRole($id)
+        {
+        $pdo = Connect::seConnecter();
+        
+        try {
+             
+            
+            $req = $pdo->prepare("DELETE FROM role WHERE id_role = :id");
+            $req->execute(['id' => $id]);
+
+            $this->listRole();
+        
+            echo "<h2>Le role a été supprimés avec succès.</h2>";
+        } catch (\PDOException $e) {
+            echo "Erreur : " . $e->getMessage();
+        }
+           
+        }
+
+        public function modifyRole($id)
+        {
+            $pdo = Connect::seConnecter();
+
+            $id_role = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+            $info_role = $pdo->prepare("SELECT * 
+                                                FROM role
+                                                WHERE id_role = :id");
+            $info_role->execute(['id' => $id_role]);
+
+            if(isset($_POST['submit']))
+            {
+            $nom_role = filter_input(INPUT_POST, "nom_role", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            try {
+    
+                
+                
+                $id_role = filter_input(INPUT_POST, "id_role", FILTER_VALIDATE_INT);
+                // var_dump($_POST);
+                // exit;
+                
+                
+                
+                $requete = $pdo->prepare("UPDATE role SET nom_role = :nom_role 
+                                                        WHERE id_role = :id");
+                 $requete->bindParam(':nom_role', $nom_role);
+                 $requete->bindParam(':id', $id_role);
+                 $requete->execute();
+                
+                
+                echo "<h2>Les informations ont été mis à jour avec succès.</h2>";
+            } catch (\PDOException $e) {
+                echo "Erreur : " . $e->getMessage();
+            }
+            }
+            require 'view/modifierRole.php';
         }
 
         public function addCasting()
@@ -534,7 +713,7 @@
                     $requete->bindParam(':id_acteur', $acteur);
                     $requete->bindParam(':id_role', $role);
                     $requete->execute();
-                    echo "Le casting a été ajouté avec succès.";
+                    echo "<h2>Le casting a été ajouté avec succès.</h2>";
                     }else{echo "Le casting n'a pas été ajouté";
                     }
             }

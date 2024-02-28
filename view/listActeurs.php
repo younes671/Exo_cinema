@@ -6,7 +6,7 @@
 <table class="uk-table uk-table-striped">
     <thead>
         <tr>
-            <th><h1>ACTEUR</h1></th>
+            <th>ACTEUR</th>
         </tr>
     </thead>
     <tbody>

@@ -6,7 +6,8 @@ $acteurs = $acteur->fetchAll();
 <?php
 foreach($acteurs as $acteur) 
 {
-    echo "<h2>Acteur : " . $acteur["prenom"] . " " . $acteur["nom"] . "</h2>";
+    echo "<h2>Acteur : " . $acteur["prenom"] . " " . $acteur["nom"] . "</h2>",
+    "<h2>Dans le film : " . $acteur["titre"] . "</h2>";
 }
 
 

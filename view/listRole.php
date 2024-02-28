@@ -1,4 +1,5 @@
 <?php  ob_start(); ?>
+<?php $requetes = $requete->fetchAll();?> 
 
 
 
@@ -6,19 +7,21 @@
 <table class="uk-table uk-table-striped">
     <thead>
         <tr>
-            <th>ROLE</th>
+            <th>ROLES</th>
         </tr>
     </thead>
     <tbody>
         <?php
-        foreach($requete->fetchAll() as $role){ ?>
+        foreach($requetes as $role){ ?>
         <tr>
+            <td><a style='text-decoration:none'class='link-light' href='index.php?action=deleteRole&id=<?= $role['id_role'] ?>'><button class='btn btn-danger btn-sm' type='button'>Supprimer role</button></a></td>
             <td><a href="index.php?action=detailRole&id=<?= $role['id_role']?>"><?= $role['nom_role'] ?></a></td>
+            <td><a style='text-decoration:none'class='link-light' href='index.php?action=modifyRole&id=<?= $role['id_role'] ?>'><button class='btn btn-primary btn-sm' type='button'>Modifier role</button></a></td>
         </tr>
     <?php } ?>
     </tbody>
 </table>
-
+<a class="link" style='text-decoration:none'class='link-light' href='index.php?action=addRole&id=<?= $role['id_role'] ?>'><button class='btn btn-success btn-sm' type='button'>Ajouter role</button></a>
 <?php
 $titre = "Liste des Roles";
 $titre_secondaire = "Liste des roles";

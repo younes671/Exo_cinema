@@ -6,32 +6,32 @@
         <?php foreach($films as $film) { ?>
                 <input type="hidden" name="id_film" value="<?= $id_film ?>">
                 <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Titre</label>
+                    <label for="disabledTextInput" class="label">Titre</label>
                     <input type="text"  class="form-control" name="titre" placeholder="<?= $film['titre'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Année de sortie</label>
+                    <label for="disabledTextInput" class="label">Année de sortie</label>
                     <input type="number"  class="form-control" name="annee_sortie" placeholder="<?= $film['annee_sortie'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Durée en minutes</label>
+                    <label for="disabledTextInput" class="label">Durée en minutes</label>
                     <input type="number"  class="form-control" name="duree" placeholder="<?= $film['duree'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Affiche du film</label>
+                    <label for="disabledTextInput" class="label">Affiche du film</label>
                     <input type="text"  class="form-control" name="affiche" placeholder="<?= $film['affiche'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Synopsis</label>
+                    <label for="disabledTextInput" class="label">Synopsis</label>
                     <input type="text"  class="form-control" name="synopsis" placeholder="<?= $film['synopsis'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Note</label>
+                    <label for="disabledTextInput" class="label">Note</label>
                     <input type="number"  class="form-control" name="note" placeholder="<?= $film['note'] ?>">
                 </div>
                 <div class="mb-3">
-                    <label for="disabledTextInput" class="form-label">Realisateur</label>
-                    <input type="number"  class="form-control" name="realisateur" placeholder="<?= $film['prenom'] ." " . $film['nom'] ?>">
+                    <label for="disabledTextInput" class="label">Realisateur</label>
+                    <input type="text"  class="form-control" name="realisateur" placeholder="<?= $film['prenom'] ." " . $film['nom'] ?>">
                 </div>
          <?php } ?>
 
