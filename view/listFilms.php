@@ -4,13 +4,12 @@
 
 <p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?> films</p>
 <table class="uk-table uk-table-striped">
-    <!-- <thead>
+    <thead>
         <tr>
-            <th>TITRE</th>
-            <th>ANNEE SORTIE</th>
+            <th>LISTE FILMS</th>
         </tr>
-    </thead> -->
-    <h1>Liste film</h1>
+    </thead>
+    <h1></h1>
     <tbody>
         <?php
         foreach($requete->fetchAll() as $film){ ?>

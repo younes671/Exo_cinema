@@ -40,7 +40,7 @@ body{
 }
 .fa-solid{
     font-size: 35px;
-    color: #af1d1d;
+    color: #ffffff;
     text-shadow: 1px 2px 2px black;
 }
 
@@ -55,7 +55,7 @@ body{
 .text-logo{
     margin: 5px;
     text-align: center;
-    color: #af1d1d;
+    color: #ffffff;
     text-shadow: 1px 5px 5px black;
     font-weight: bolder;
     font-size: 23px;
@@ -70,7 +70,7 @@ body{
 
 
 .navbar-toggler{
-    border-color: #af1d1d; 
+    border-color: #ffffff; 
     box-shadow: 1px 1px 1px black;  
 }
 
@@ -79,9 +79,10 @@ body{
 }
 
 .nav-link{
-    color: #af1d1d;
+    color: #ffffff;
     font-family: 'inria Serif';
     font: bolder;
+    text-shadow: 2px 5px 5px black;
 }
 
 .nouveaute{
@@ -95,7 +96,7 @@ body{
     align-items: center;
     height: 100px;
     background: linear-gradient(#4a494965, #1e1f22);
-    color: #af1d1d;
+    color: #ffffff;
     font-size: 40px;
     font-family: 'poppins';
     text-shadow: 1px 5px 5px black;
@@ -167,7 +168,7 @@ p{
     align-items: center;
     height: 100px;
     background: linear-gradient(#1e1f22, #4a494965);
-    color: #af1d1d;
+    color: #ffffff;
     font-size: 40px;
     font-family: 'poppins';
     text-shadow: 1px 5px 5px black;
@@ -190,7 +191,7 @@ p{
     align-items: center;
     max-width:20%;
     overflow: hidden;
-    border: solid 1px #af1d1d;
+    border: solid 1px #ffffff;
     border-radius: 10px;
     height: 200px;
 }
@@ -221,7 +222,7 @@ p{
     align-items: center;
     height: 100px;
     background: linear-gradient(#1e1f22, #4a494965);
-    color: #af1d1d;
+    color: #ffffff;
     font-size: 40px;
     font-family: 'poppins';
     text-shadow: 1px 5px 5px black;
@@ -249,7 +250,7 @@ p{
     padding-top: 20px;
     height: 100%;
     background: linear-gradient(#1e1f22, #4a494965);
-    color: #af1d1d;
+    color: #ffffff;
     font-size: 15px;
     font-family: 'poppins';
     /* text-shadow: 1px 1px 1px rgb(217, 215, 215); */
@@ -265,8 +266,8 @@ p{
     justify-content: center;
     align-items: center;
     height: 120px;
-    background: linear-gradient( #4a494965,#1e1f22);
-    color: #af1d1d;
+    background: linear-gradient( #31313165,#1e1f22);
+    color: #ffffff;
     font-size: 40px;
     font-family: 'poppins';
     text-shadow: 1px 5px 5px black;
@@ -274,7 +275,7 @@ p{
 }
 
 .form{
-    background: linear-gradient( #4a494965,#1e1f22);
+    background: linear-gradient( #22222265,#1e1f22);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -288,25 +289,27 @@ p{
     border-radius: 5px;
     height: 35px;
     font-family: 'inria Serif';
-    color: #af1d1d;
+    color: #100f0f;
     margin-bottom: 15px;
 }
 
 .label{
-    color: #af1d1d;
+    color: #ffffff;
     font-size: 25px;
     font-family: 'inria Serif';
+    text-shadow: 2px 5px 5px black;
 }
 
 h1{
     display: flex;
     justify-content: center;
-    color: #af1d1d;
-    background: #4a494965;
+    color: #ffffff;
+    background: linear-gradient( #31313165,#1e1f22);
     margin: 0;
     padding: 25px;
     font-family: 'inria Serif';
-   
+    font-size: 35px;
+    text-shadow: 2px 5px 5px black;
 }
 
 
@@ -314,7 +317,7 @@ h1{
 .description{
     display: flex;
     justify-content: center;
-    color: #af1d1d;
+    color: #ffffff;
     background: #4a494965;
     font-family: 'inria Serif';
     font-size: 25px;
@@ -324,16 +327,17 @@ h1{
 h2{
     display: flex;
     justify-content: center;
-    color: #af1d1d;
+    color: #ffffff;
     background: #4a494965;
     margin: 0;
     padding: 25px;
     font-family: 'inria Serif';
+    text-shadow: 2px 5px 5px black;
 }
 h3{
     display: flex;
     justify-content: center;
-    color: #af1d1d;
+    color: #ffffff;
     background: #4a494965;
     margin: 0;
     padding: 25px;
@@ -353,12 +357,13 @@ h3{
 .btn{
     margin-bottom: 15px;
     background-color: #1e1f22;
-    border-color: #af1d1d;
-    color: #af1d1d;
+    border-color: #ffffff;
+    color: #ffffff;
 }
 
 .form-control{
     font-family: 'inria Serif';
+    color: #000;
 }
 
 .uk-table{
@@ -375,7 +380,7 @@ a{
     display: flex;
     align-items: flex-end;
     text-decoration: none;
-    color: #af1d1d;
+    color: #ffffff;
     font-size: 20px;
     display: flex;
     justify-content: center;
@@ -392,17 +397,19 @@ td{
     display: flex;
     justify-content: center;
     width: 100%;
+    text-shadow: 2px 5px 5px black;
 }
 
 th{
     font-family:'inria Serif';
-    /* font-size: 35px; */
-    color: #af1d1d;
+    font-size: 35px;
+    color: #ffffff;
+    text-shadow: 2px 5px 5px black;
 }
 
 .uk-label{
     background-color: #4a494965;
-    color: #af1d1d;
+    color: #ffffff;
     font-weight: bolder;
     font-size: 22px;
     font-family: 'inria Serif';
