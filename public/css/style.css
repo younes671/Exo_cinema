@@ -289,6 +289,7 @@ p{
     height: 35px;
     font-family: 'inria Serif';
     color: #af1d1d;
+    margin-bottom: 15px;
 }
 
 .label{
@@ -363,20 +364,28 @@ h3{
 .uk-table{
     display: flex;
     flex-direction: column;
+    
+    justify-content: center;
+    
     background: linear-gradient( #4a494965,#1e1f22);
 }
-tr{
-    display: flex;
-    justify-content: space-around;
-}
+
 
 a{
     display: flex;
     align-items: flex-end;
     text-decoration: none;
     color: #af1d1d;
-    font-size: 30px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+tr{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
 }
 
 td{
@@ -387,7 +396,7 @@ td{
 
 th{
     font-family:'inria Serif';
-    font-size: 35px;
+    /* font-size: 35px; */
     color: #af1d1d;
 }
 
@@ -445,6 +454,10 @@ th{
 
     .listeFilm{
         font-size: 25px;
+    }
+
+    a{
+        font-size: 35px;
     }
 
     .aLaUne{
