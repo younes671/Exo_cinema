@@ -13,5 +13,6 @@
 
 $titre = "Ajouter role";
 $titre_secondaire = "Ajouter role";
+$info = "ajoute un role";
 $content = ob_get_clean();
 require "view/Template.php";

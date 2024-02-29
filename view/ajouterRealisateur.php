@@ -25,5 +25,6 @@
 
 $titre = "Ajouter realisateur";
 $titre_secondaire = "Ajouter realisateur";
+$info = "ajoute un réalisateur";
 $content = ob_get_clean();
 require "view/Template.php";

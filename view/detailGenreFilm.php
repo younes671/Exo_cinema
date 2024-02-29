@@ -17,6 +17,7 @@ if($films)
 
 $titre = "Liste des Acteurs";
 $titre_secondaire = "Liste des acteurs";
+$info = "Informations sur le genre du film";
 $content = ob_get_clean();
 require "view/Template.php";
 ?>

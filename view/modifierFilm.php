@@ -45,5 +45,6 @@
 
 $titre = "Modifier film";
 $titre_secondaire = "Modifier film";
+$info = "met à jour informations film";
 $content = ob_get_clean();
 require "view/Template.php";

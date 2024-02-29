@@ -24,5 +24,6 @@
 
 $titre = "Détail d'un film";
 $titre_secondaire = "Détail d'un film";
+$info = "Informations sur les films";
 $content = ob_get_clean();
 require "view/Template.php";

@@ -49,5 +49,6 @@
 
 $titre = "Ajouter film";
 $titre_secondaire = "Ajouter film";
+$info = "ajoute un film";
 $content = ob_get_clean();
 require "view/Template.php";

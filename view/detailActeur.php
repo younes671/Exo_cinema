@@ -32,5 +32,6 @@ foreach($playActeurs as $playActeur)
 
 $titre = "Détails Acteurs";
 $titre_secondaire = "Détails Acteurs";
+$info = "Informations sur les acteurs";
 $content = ob_get_clean();
 require "view/Template.php";

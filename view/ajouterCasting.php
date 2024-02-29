@@ -39,5 +39,6 @@ $castingRole = $req_casting_role->fetchAll();
 
 $titre = "Ajouter casting";
 $titre_secondaire = "Ajouter casting";
+$info = "ajoute un casting";
 $content = ob_get_clean();
 require "view/Template.php";

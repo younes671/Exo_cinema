@@ -24,5 +24,6 @@
 <?php
 $titre = "Genre Film";
 $titre_secondaire = "Liste genre film";
+$info = "affiche la liste complète des genres de films";
 $content = ob_get_clean();
 require "view/Template.php";

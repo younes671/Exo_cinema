@@ -18,5 +18,6 @@
 
 $titre = "Modifier genre";
 $titre_secondaire = "Modifier genre";
+$info = "met à jour informations genre d'un film";
 $content = ob_get_clean();
 require "view/Template.php";

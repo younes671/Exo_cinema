@@ -25,5 +25,6 @@
 <?php
 $titre = "Liste des Acteurs";
 $titre_secondaire = "Liste des acteurs";
+$info = "affiche la liste complète des acteurs";
 $content = ob_get_clean();
 require "view/Template.php";

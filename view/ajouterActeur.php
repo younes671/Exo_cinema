@@ -25,5 +25,6 @@
 
 $titre = "Ajouter acteur";
 $titre_secondaire = "Ajouter acteur";
+$info = "ajoute un acteur";
 $content = ob_get_clean();
 require "view/Template.php";

@@ -17,6 +17,7 @@
 <?php
 
 $titre = "Modifier role";
+$info = "met à jour informations role d'un acteur";
 $titre_secondaire = "Modifier role";
 $content = ob_get_clean();
 require "view/Template.php";

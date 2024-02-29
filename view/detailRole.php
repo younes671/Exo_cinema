@@ -13,6 +13,7 @@ foreach($acteurs as $acteur)
 
 $titre = "Liste des Acteurs";
 $titre_secondaire = "Liste des acteurs";
+$info = "Informations sur le role d'un acteur";
 $content = ob_get_clean();
 require "view/Template.php";
 ?>

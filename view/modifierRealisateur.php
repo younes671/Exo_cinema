@@ -30,5 +30,6 @@
 
 $titre = "Modifier realisateur";
 $titre_secondaire = "Modifier realisateur";
+$info = "met à jour informations réalisateur";
 $content = ob_get_clean();
 require "view/Template.php";

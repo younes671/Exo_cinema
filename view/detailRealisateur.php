@@ -16,5 +16,6 @@ foreach($realisationFilms as $realisationFilm)
 
 $titre = "Liste des Acteurs";
 $titre_secondaire = "Liste des acteurs";
+$info = "Informations sur les réalisateurs";
 $content = ob_get_clean();
 require "view/Template.php";

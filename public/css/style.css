@@ -177,11 +177,17 @@ p{
 
 .aLaUne{
     background: #9f9797;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    /* flex-wrap: wrap; */
 }
 
 .affiche-aLaUne{
     display: flex;
-    justify-content: space-around;
+    
+    justify-content:space-around;
+    /* flex-wrap: wrap; */
    margin-top: 20px;
    
 }
@@ -189,6 +195,7 @@ p{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    
     max-width:20%;
     overflow: hidden;
     border: solid 1px #ffffff;
@@ -202,14 +209,19 @@ p{
 }
 
 .image2{
-    width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    width: 90px;
+    height: 200px;
+    padding: 5px;
 }
   
   .affiche {
+    display: flex;
     background: #000;
     width: 100%;
-    
     color: #f1f1f1;
   }
   
@@ -377,9 +389,7 @@ h3{
     background: linear-gradient( #4a494965,#1e1f22);
 }
 
-.uk-label{
 
-}
 
 
 a{

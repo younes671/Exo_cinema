@@ -32,5 +32,6 @@
 
 $titre = "Modifier Acteur";
 $titre_secondaire = "Modifier Acteur";
+$info = "met à jour informations acteur";
 $content = ob_get_clean();
 require "view/Template.php";

@@ -25,5 +25,6 @@
 <?php
 $titre = "Liste des Roles";
 $titre_secondaire = "Liste des roles";
+$info = "affiche la liste complète des roles des acteurs";
 $content = ob_get_clean();
 require "view/Template.php";

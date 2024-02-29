@@ -13,5 +13,6 @@
 
 $titre = "Ajouter genre";
 $titre_secondaire = "Ajouter genre";
+$info = "ajoute un genre de film";
 $content = ob_get_clean();
 require "view/Template.php";

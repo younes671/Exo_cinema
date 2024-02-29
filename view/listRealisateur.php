@@ -25,5 +25,6 @@
 <?php
 $titre = "Liste des Realisateurs";
 $titre_secondaire = "Liste des realisateurs";
+$info = "affiche la liste complète des réalisateurs";
 $content = ob_get_clean();
 require "view/Template.php";

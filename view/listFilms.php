@@ -26,5 +26,6 @@
 <?php
 $titre = "Liste des Films";
 $titre_secondaire = "Liste des films";
+$info = "affiche la liste complète des films";
 $content = ob_get_clean();
 require "view/Template.php";

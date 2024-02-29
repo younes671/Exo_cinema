@@ -5,8 +5,14 @@
     class HomeController
     {
 
-        public function home()
+        public function listFilm()
         {
-            require 'view/home.php';
+           
+                $pdo = Connect::seConnecter();
+                $requete = $pdo->query("SELECT DISTINCT affiche
+                                            FROM film LIMIT 4;");
+                
+            
+                require 'view/home.php';
         }
     }

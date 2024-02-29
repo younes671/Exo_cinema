@@ -54,7 +54,7 @@
             case "addCasting" : $ctrlCasting->addCasting(); break;
         }
     } else {
-        $ctrlHome->home();
+        $ctrlHome->listFilm();
     }
 ?>
 

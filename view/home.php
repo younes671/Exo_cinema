@@ -1,4 +1,5 @@
-<?php  ob_start(); ?>
+<?php  ob_start(); 
+$films = $requete->fetchAll();?>
 
 <section class="nouveaute">
         <div class="titre-nouveaute">
@@ -6,31 +7,35 @@
         </div>
             <div class="slider-container slider-1">
                 <div class="slider">
-                        <p><img class="image1" src="public/img/seven.png" alt="seven"></p>
-                        <p><img class="image1" src="public/img/ronin.png" alt="ronin"></p>
-                        <p><img class="image1" src="public/img/hitman.png" alt="hitman"></p>
-                        <p><img class="image1" src="public/img/after-earth-affiche-film.jpg" alt="after-earth"></p>
-                        <p><img class="image1" src="public/img/seven.png" alt="seven"></p>
-                </div>
+                    <?php foreach($films as $film){ ?>
+                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="seven"></p>
+                        <?php } ?>
+                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
+                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
+                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
+                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
+                    </div>
           </div>
     </section>
     <section class="aLaUne">
         <div class="titre-aLaUne">
             <p>À LA UNE</p>
         </div>
-        <div class="affiche-aLaUne">
-                <div class="affiche">
-                    <p><img class="image2" src="public/img/seven.png" alt="seven"></p>
+        <!-- <div class="affiche"> -->
+                    <div class="affiche-aLaUne">
+                <?php foreach($films as $film){ ?>
+                    <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film" ></p>
+                    <?php } ?>
+                <!-- </div> -->
+                <!-- <div class="affiche">
+                    <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film"></p>
                 </div>
                 <div class="affiche">
-                    <p><img class="image2" src="public/img/ronin.png" alt="ronin"></p>
+                    <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film"></p>
                 </div>
                 <div class="affiche">
-                    <p><img class="image2" src="public/img/hitman.png" alt="hitman"></p>
-                </div>
-                <div class="affiche">
-                    <p><img class="image2" src="public/img/after-earth-affiche-film.jpg" alt="after-earth"></p>
-                </div>
+                    <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film"></p>
+                </div> -->
           </div>
     </section>
     <!-- <section class="sortieDeLaSemaine">
@@ -60,5 +65,6 @@
     <?php
 $titre = "Home";
 $titre_secondaire = "Home";
+$info = "affiche la page d'accueil du site";
 $content = ob_get_clean();
 require "view/Template.php";
