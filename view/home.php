@@ -10,10 +10,7 @@ $films = $requete->fetchAll();?>
                     <?php foreach($films as $film){ ?>
                         <p><img class="image1" src="<?= $film["affiche"] ?>" alt="seven"></p>
                         <?php } ?>
-                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
-                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
-                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
-                        <p><img class="image1" src="<?= $film["affiche"] ?>" alt="Affiche film"></p>
+
                     </div>
           </div>
     </section>
@@ -26,16 +23,6 @@ $films = $requete->fetchAll();?>
                 <?php foreach($films as $film){ ?>
                     <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film" ></p>
                     <?php } ?>
-                <!-- </div> -->
-                <!-- <div class="affiche">
-                    <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film"></p>
-                </div>
-                <div class="affiche">
-                    <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film"></p>
-                </div>
-                <div class="affiche">
-                    <p><img class="image2" src="<?= $film["affiche"] ?>" alt="affiche film"></p>
-                </div> -->
           </div>
     </section>
     <!-- <section class="sortieDeLaSemaine">

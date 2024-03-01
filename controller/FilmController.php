@@ -14,7 +14,7 @@
 
         public function detailFilm($id) {
             $pdo = Connect::seConnecter();
-            $requete = $pdo->prepare("SELECT * 
+            $requete = $pdo->prepare("SELECT f.titre AS titre, f.annee_sortie, CONCAT(LPAD(duree / 60, 2, '0'), 'h ', LPAD(duree % 60, 2, '0')) AS duree, f.affiche, f.synopsis, f.note, p.nom, p.prenom 
                                         FROM film f
                                         INNER JOIN realisateur r ON r.id_realisateur = f.id_realisateur
                                         INNER JOIN personne p ON p.id_personne = r.id_personne
