@@ -6,6 +6,8 @@
     class ActeurController
     {
 
+        // récupère liste acteur
+
         public function listActeurs()
         {
             $pdo = Connect::seConnecter();
@@ -36,6 +38,8 @@
             $reqPlay->execute(["id" => $id]);
             require 'view/detailActeur.php';
         }
+
+        //rajoute acteur
 
         public function addActeur()
         {
@@ -72,6 +76,8 @@
             require 'view/ajouterActeur.php';
         }
 
+        //supprime acteur
+
         public function deleteActeur($id)
         {
         $pdo = Connect::seConnecter();
@@ -101,7 +107,7 @@
             require 'view/listActeurs.php';
         }
 
-
+        //modifie, met à jour infos acteur
         
         public function modifyActeur()
         {

@@ -4,6 +4,9 @@
 
     class FilmController
     {
+
+        // récupère liste film
+
         public function listFilms()
         {
             $pdo = Connect::seConnecter();
@@ -32,6 +35,8 @@
 
             require 'view/detailFilm.php';
         }
+
+         //rajoute film
 
         public function addFilm()
         {
@@ -79,6 +84,8 @@
             require 'view/ajouterFilm.php';
         }
 
+         //supprime film
+
 
         public function deleteFilm($id)
         {
@@ -103,6 +110,8 @@
             $this->listFilms();
             echo "<h2>Le film a été supprimé avec succès</h2>";
         }
+
+         //modifie, met à jour infos film
 
         public function modifyFilm()
         {

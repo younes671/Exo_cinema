@@ -6,6 +6,7 @@
     class RealisateurController
     {
 
+        // récupère liste realisateur
 
         public function listRealisateur()
         {
@@ -34,6 +35,8 @@
             
             require 'view/detailRealisateur.php';
         }
+
+         //rajoute realisateur
 
         public function addRealisateur()
         {
@@ -69,6 +72,8 @@
             }
             require 'view/ajouterRealisateur.php';
         }
+
+         //supprime realisateur
     
         public function deleteRealisateur($id)
         {
@@ -112,6 +117,8 @@
         }
            
         }
+
+         //modifie, met à jour infos realisateur
     
         public function modifyRealisateur($id)
         {

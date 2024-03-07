@@ -1,6 +1,6 @@
 <?php  ob_start(); 
 $role = $requete->fetch();
-$acteurs = $acteur->fetchAll();
+$acteurs = $acteurs->fetchAll();
 ?>
 <h2><?= "Nom role : " . $role["nom_role"] ?></h1>
 <?php

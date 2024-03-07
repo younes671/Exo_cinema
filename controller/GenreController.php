@@ -5,7 +5,7 @@
     class GenreController
     {
 
-
+        // récupère liste genre film
         
         public function listGenreFilm()
         {
@@ -33,6 +33,8 @@
             require 'view/detailGenreFilm.php';
         }
 
+         //rajoute genre
+
         public function addGenre()
         {
             $pdo = Connect::seConnecter();
@@ -55,6 +57,8 @@
             require 'view/ajouterGenre.php';
         }
 
+         //supprime genre
+
         public function deleteGenre($id)
         {
         $pdo = Connect::seConnecter();
@@ -73,6 +77,8 @@
         }
            
         }
+
+         //modifie, met à jour infos genre
 
         public function modifyGenre($id)
         {

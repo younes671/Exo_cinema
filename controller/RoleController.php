@@ -5,10 +5,12 @@
     class RoleController
     {
 
+        // récupère liste roles
+
         public function listRole()
         {
             $pdo = Connect::seConnecter();
-            $requete = $pdo->query("SELECT DISTINCT id_role, nom_role 
+            $requete = $pdo->query("    SELECT DISTINCT id_role, nom_role 
                                         FROM role
                                         ORDER BY nom_role");
             require 'view/listRole.php';
@@ -24,17 +26,19 @@
                                         INNER JOIN role r ON r.id_role = j.id_role
                                         WHERE r.id_role = :id");
             $requete->execute(["id" => $id]);
-            $acteur = $pdo->prepare("SELECT * 
+            $acteurs = $pdo->prepare("SELECT * 
                                     FROM personne p
                                     INNER JOIN acteur a ON a.id_personne = p.id_personne
                                     INNER JOIN jouer j ON j.id_acteur = a.id_acteur
                                     INNER JOIN film f ON f.id_film = j.id_film
                                     INNER JOIN role r ON r.id_role = j.id_role
                                     WHERE r.id_role = :id");
-            $acteur->execute(["id" => $id]);
+            $acteurs->execute(["id" => $id]);
             
             require 'view/detailRole.php';
         }
+
+         //rajoute role
 
         public function addRole()
         {
@@ -58,6 +62,8 @@
             require 'view/ajouterRole.php';
         }
 
+         //supprime role
+
         public function deleteRole($id)
         {
         $pdo = Connect::seConnecter();
@@ -76,6 +82,8 @@
         }
            
         }
+
+         //modifie, met à jour infos role
 
         public function modifyRole($id)
         {
