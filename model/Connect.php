@@ -4,7 +4,7 @@
     // abstract :  Les méthodes définies comme abstraites déclarent simplement la signature de la méthode ; elles ne peuvent définir son implémentation.
     abstract class Connect
     {
-        const HOST_NAME = 'localhost';
+        const HOST_NAME = 'db';
         const DB_NAME = 'cinema';
         const USER_NAME = 'root';
         const PWD = '';
@@ -17,8 +17,7 @@
         {
             return new \PDO
             (
-                'mysql:host=' . self::HOST_NAME . ';dbname=' . self::DB_NAME .';
-                charset=utf8', self::USER_NAME, self::PWD
+                'mysql:host=' . self::HOST_NAME . ';dbname=' . self::DB_NAME .';charset=utf8', self::USER_NAME, self::PWD
             );
         }
         catch(\PDOException $e)
